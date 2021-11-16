@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct ThirdVCBuilder {
+struct ChequeVCBuilder {
     static func createThirdVC(appModel: AppModel, coordinator: Coordinator) -> ChequeViewController {
         let thirdVC = ChequeViewController()
-        let viewModel = ThirdVCViewModel(with: appModel)
+        let viewModel = ChequeVCViewModel(with: appModel)
         let tableViewManager = TableViewManager()
         
         thirdVC.viewModel = viewModel

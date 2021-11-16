@@ -17,7 +17,6 @@ class ScannerViewController: UIViewController  {
     var subView: UIView?
     var decodedData: AppModel?
     var viewModel: (QRScannableDelegate & ScannerVCViewModelProtocol & Coordinating)?
-    //    = ScannerVCViewModel()
     var leftImageView: UIImageView = UIImageView()
     var rightImageView: UIImageView = UIImageView()
     private lazy var captureSession = AVCaptureSession()
@@ -48,9 +47,8 @@ class ScannerViewController: UIViewController  {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //        leftBarButtonItem.action = #selector(didTapBackButton)
-        
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.navigationBar.isHidden = false
@@ -59,7 +57,6 @@ class ScannerViewController: UIViewController  {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        navigationController?.navigationBar.backgroundColor = .none
         viewModel?.viewDidChangeLifecycle(viewIsActive: true)
     }
     
@@ -70,20 +67,20 @@ class ScannerViewController: UIViewController  {
         
         configuerLayout()
         configureVideoLayer(with: captureDevice)
-    
     }
 
     
     @objc private func didTapFlash(){
         flashActive(on: captureDevice)
     }
+    
     @objc private func didTapBackButton(){
         viewModel?.coordinator?.eventOccured(with: .dismiss)
             }
     
     private func addSubViews() {
         view.layer.addSublayer(videoPreviewLayer)
-        guard let subView = ff() else{
+        guard let subView = createMaskingView() else{
             return
         }
         leftImageView = UIImageView(image: UIImage(named: Constants.leftNavBarImageName))
@@ -191,9 +188,8 @@ class ScannerViewController: UIViewController  {
         
     }
 
-    func ff() -> UIView? {
-        
-        // Create a view filling the screen.
+    func createMaskingView() -> UIView? {
+
         let overlay = UIView(frame: CGRect(x: 0, y: 0,
                                            width: UIScreen.main.bounds.width,
                                            height: UIScreen.main.bounds.height))
@@ -210,15 +206,12 @@ class ScannerViewController: UIViewController  {
         let innerRectPath = UIBezierPath(roundedRect: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 200, height: 200), cornerRadius: 12)
 
         
-        // Create the path.CAShapeLayerFillRule.evenOdd
         let path = UIBezierPath(rect: overlay.bounds)
         maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         
-        // Append the circle tcgPathpath so that it is subtracted.
         path.append(innerRectPath)
         maskLayer.path = path.cgPath
         
-        // Set the mask of the view.
         overlay.layer.mask = maskLayer
         
         return overlay

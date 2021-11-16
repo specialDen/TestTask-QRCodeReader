@@ -18,8 +18,6 @@ class ItemsTableViewCell: UITableViewCell {
     var addressLabelText:String = ""
     var dateLabelText:String = ""
     
-    //    var items: [Item] = [Item(name: "roll", price: 32, count: 2), Item(name: "roll", price: 32, count: 2), Item(name: "roll", price: 32, count: 2)]
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()

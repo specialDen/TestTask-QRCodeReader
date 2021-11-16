@@ -8,13 +8,13 @@
 import UIKit
 
 // Protocol -> View
-protocol ThirdVCViewInput: AnyObject {
+protocol ChequeVCViewInput: AnyObject {
     func setTotal(with total: String)
 }
 
 class ChequeViewController: UIViewController {
     // Protocol for VC -> ViewModel
-    var viewModel: (ThirdVCViewModelProtocol & Coordinating)?
+    var viewModel: (ChequeVCViewModelProtocol & Coordinating)?
     var subView = UIView()
     private let tableView = UITableView()
 
@@ -29,7 +29,6 @@ class ChequeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        viewmodel.delegate = self
         overrideUserInterfaceStyle = .light
         title = Constants.title
         view.backgroundColor = .red
@@ -63,7 +62,6 @@ class ChequeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         amountLabel.sizeToFit()
         tableView.sizeToFit()
-//        payButton.frame.size.height = 70
         NSLayoutConstraint.activate([
             
             amountLabel.rightAnchor.constraint(equalTo: payButton.rightAnchor, constant: -10),
@@ -107,7 +105,7 @@ class ChequeViewController: UIViewController {
 }
 
 
-extension ChequeViewController: ThirdVCViewInput {
+extension ChequeViewController: ChequeVCViewInput {
     func setTotal(with total: String) {
         DispatchQueue.main.async {
             self.amountLabel.text = total

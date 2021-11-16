@@ -37,12 +37,11 @@ extension QRScannableManager: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         guard
             let metadataObj = metadataObjects.first as? AVMetadataMachineReadableCodeObject else {
-            delegate?.QRManager(didObtain: nil, with: nil)
-            return
-        }
-        // Get the metadata object
+                delegate?.QRManager(didObtain: nil, with: nil)
+                return
+            }
+
         if supportedCodeTypes.contains(metadataObj.type) {
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             delegate?.QRManager(didObtain: metadataObj.stringValue, with: barCodeObject?.bounds)
         }
@@ -56,5 +55,5 @@ extension QRScannableManager: QRScannableManagerProtocol {
         mediaOutPut.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         mediaOutPut.metadataObjectTypes = supportedCodeTypes
     }
-
+    
 }

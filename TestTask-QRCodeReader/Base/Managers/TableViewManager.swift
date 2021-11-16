@@ -29,20 +29,7 @@ class TableViewManager: NSObject, UITableViewDataSource  {
     override init() {
         super.init()
     }
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 0 {
-//            return UITableView.automaticDimension
-//        } else {
-//            return 40
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////        if indexPath.section == 0 {
-//            return UITableView.automaticDimension
-//
-//    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -66,8 +53,7 @@ class TableViewManager: NSObject, UITableViewDataSource  {
             totalCell.setupLabelText(with: useableData["total"])
             cell = totalCell
         }
-//        cell.contentView.sizeToFit()
-//        addDashedBottomBorder(to: cell)
+
         return cell
     }
     
@@ -76,11 +62,10 @@ class TableViewManager: NSObject, UITableViewDataSource  {
 }
 
 extension TableViewManager: TableViewManagerProtocol {
+    
     func setupTableView(using tableView: UITableView) {
         self.tableView = tableView
-//        self.tableView?.sizeToFit()
         self.tableView?.dataSource = self
-//        self.tableView?.delegate = self
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.reuseIdentifier)

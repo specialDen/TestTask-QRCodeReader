@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B685EC4E274141CF0069AD03 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685EC4D274141CF0069AD03 /* TableViewManager.swift */; };
-		B6AFC8CC27415A9600016487 /* ThirdVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFC8CB27415A9600016487 /* ThirdVCBuilder.swift */; };
+		B6AFC8CC27415A9600016487 /* ChequeVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFC8CB27415A9600016487 /* ChequeVCBuilder.swift */; };
 		B6EC1DA22743441A00127E71 /* TableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC1DA12743441A00127E71 /* TableViewCellExtension.swift */; };
 		B6EC1DA42743445D00127E71 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC1DA32743445D00127E71 /* ArrayExtension.swift */; };
 		B6EF957827434BAC0049143F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF957727434BAC0049143F /* Constants.swift */; };
@@ -29,12 +29,12 @@
 		B6FB6D612740951C0041955D /* QRScannableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D602740951C0041955D /* QRScannableManager.swift */; };
 		B6FB6D6E2740B85D0041955D /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D6D2740B85D0041955D /* TitleTableViewCell.swift */; };
 		B6FB6D702740C0AD0041955D /* TotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D6F2740C0AD0041955D /* TotalTableViewCell.swift */; };
-		B6FB6D722740CDAC0041955D /* ThirdVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D712740CDAC0041955D /* ThirdVCViewModel.swift */; };
+		B6FB6D722740CDAC0041955D /* ChequeVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D712740CDAC0041955D /* ChequeVCViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B685EC4D274141CF0069AD03 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
-		B6AFC8CB27415A9600016487 /* ThirdVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVCBuilder.swift; sourceTree = "<group>"; };
+		B6AFC8CB27415A9600016487 /* ChequeVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeVCBuilder.swift; sourceTree = "<group>"; };
 		B6EC1DA12743441A00127E71 /* TableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellExtension.swift; sourceTree = "<group>"; };
 		B6EC1DA32743445D00127E71 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		B6EF957727434BAC0049143F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		B6FB6D602740951C0041955D /* QRScannableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannableManager.swift; sourceTree = "<group>"; };
 		B6FB6D6D2740B85D0041955D /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		B6FB6D6F2740C0AD0041955D /* TotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalTableViewCell.swift; sourceTree = "<group>"; };
-		B6FB6D712740CDAC0041955D /* ThirdVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVCViewModel.swift; sourceTree = "<group>"; };
+		B6FB6D712740CDAC0041955D /* ChequeVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChequeVCViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,7 +217,6 @@
 				B6FB6D5A27406E410041955D /* ItemsTableViewCell.swift */,
 				B6FB6D6F2740C0AD0041955D /* TotalTableViewCell.swift */,
 				B6FB6D6D2740B85D0041955D /* TitleTableViewCell.swift */,
-				B6AFC8CB27415A9600016487 /* ThirdVCBuilder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,7 +224,8 @@
 		B6FB6D6B27409B3C0041955D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B6FB6D712740CDAC0041955D /* ThirdVCViewModel.swift */,
+				B6FB6D712740CDAC0041955D /* ChequeVCViewModel.swift */,
+				B6AFC8CB27415A9600016487 /* ChequeVCBuilder.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				B6FB6D5527404FA00041955D /* ScannerVCViewModel.swift in Sources */,
 				B6FB6D4F274011F60041955D /* ScannerViewController.swift in Sources */,
 				B6FB6D4D2740109F0041955D /* ChequeViewController.swift in Sources */,
-				B6AFC8CC27415A9600016487 /* ThirdVCBuilder.swift in Sources */,
+				B6AFC8CC27415A9600016487 /* ChequeVCBuilder.swift in Sources */,
 				B6FB6D612740951C0041955D /* QRScannableManager.swift in Sources */,
 				B6FB6D6E2740B85D0041955D /* TitleTableViewCell.swift in Sources */,
 				B6FB6D5B27406E410041955D /* ItemsTableViewCell.swift in Sources */,
@@ -321,7 +321,7 @@
 				B6FB6D35273FD6400041955D /* AppDelegate.swift in Sources */,
 				B6EF957827434BAC0049143F /* Constants.swift in Sources */,
 				B6FB6D702740C0AD0041955D /* TotalTableViewCell.swift in Sources */,
-				B6FB6D722740CDAC0041955D /* ThirdVCViewModel.swift in Sources */,
+				B6FB6D722740CDAC0041955D /* ChequeVCViewModel.swift in Sources */,
 				B6FB6D4B273FDA840041955D /* MainCoordinator.swift in Sources */,
 				B6EC1DA22743441A00127E71 /* TableViewCellExtension.swift in Sources */,
 				B6EC1DA42743445D00127E71 /* ArrayExtension.swift in Sources */,

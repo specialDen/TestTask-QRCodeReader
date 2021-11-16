@@ -8,17 +8,17 @@
 import UIKit
 
 //view -> ViewModel
-protocol ThirdVCViewModelProtocol {
+protocol ChequeVCViewModelProtocol {
     var tableViewManager: TableViewManagerProtocol? { get set }
 
 }
 
 
-class ThirdVCViewModel: Coordinating {
+class ChequeVCViewModel: Coordinating {
     
     
     var coordinator: Coordinator?
-    weak var view: ThirdVCViewInput?
+    weak var view: ChequeVCViewInput?
     var tableViewManager: TableViewManagerProtocol?
     
 //    private(set) var decodedData: AppModel?
@@ -79,10 +79,10 @@ class ThirdVCViewModel: Coordinating {
 }
 
 
-extension ThirdVCViewModel: ThirdVCViewModelProtocol {
+extension ChequeVCViewModel: ChequeVCViewModelProtocol {
     
 }
 
-extension ThirdVCViewModel: TableViewManagerDelegate {
+extension ChequeVCViewModel: TableViewManagerDelegate {
     
 }

@@ -21,7 +21,7 @@ class MainCordinator: Coordinator {
             navigationController?.popToRootViewController(animated: true)
             //            navigationController?.pushViewController(vc, animated: true)
         case .dataFetched(viewModel: let appModel):
-            let thirdVC = ThirdVCBuilder.createThirdVC(appModel: appModel, coordinator: self)
+            let thirdVC = ChequeVCBuilder.createThirdVC(appModel: appModel, coordinator: self)
             navigationController?.pushViewController(thirdVC, animated: true)
         case .dismiss:
             navigationController?.popToRootViewController(animated: true)
