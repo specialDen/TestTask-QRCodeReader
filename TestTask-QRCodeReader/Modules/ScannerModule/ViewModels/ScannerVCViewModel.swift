@@ -21,7 +21,7 @@ class ScannerVCViewModel: Coordinating {
     weak var view: ScannerViewInput?
     
     var QRManager: QRScannableManagerProtocol?
-    var rawData: String?
+//    var rawData: String?
     var isViewActive: Bool = false
 //    var
     
@@ -47,8 +47,8 @@ extension ScannerVCViewModel: QRScannableDelegate {
         }
         isViewActive = false
         //call coordinator to send model to new VC
-                    coordinator?.eventOccured(with: .dataFetched(viewModel: decodedData))
-        self.rawData = rawData
+        coordinator?.eventOccured(with: .dataFetched(viewModel: decodedData))
+        //        self.rawData = rawData
     }
 }
 

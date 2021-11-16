@@ -14,7 +14,8 @@ class StartScreenViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        title = "Оплата счёта"
+        overrideUserInterfaceStyle = .light
+        title = Constants.title
         setupUI()
 
     }
@@ -31,7 +32,7 @@ class StartScreenViewController: UIViewController, Coordinating {
         button.backgroundColor = .red
 //        button.titleLabel?.text = "Сканировать"
         button.layer.cornerRadius = 12
-        button.setTitle("Сканировать", for: .normal)
+        button.setTitle(Constants.scanButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
@@ -45,7 +46,7 @@ class StartScreenViewController: UIViewController, Coordinating {
     
     let displayLabel:UILabel = {
         let label = UILabel()
-        label.text = "Для оплаты заказа отсканйруете QR-код на чеке"
+        label.text = Constants.startScreenLabelText
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
         label.textAlignment = .center

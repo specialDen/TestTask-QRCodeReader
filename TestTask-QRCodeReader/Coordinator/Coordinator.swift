@@ -11,6 +11,7 @@ enum Events  {
     case scan
     case pay
     case dataFetched(viewModel: AppModel)
+    case dismiss
 }
 
 protocol Coordinator: AnyObject {

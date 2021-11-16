@@ -87,8 +87,8 @@ class TotalTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
-            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)        ])
     }
 }

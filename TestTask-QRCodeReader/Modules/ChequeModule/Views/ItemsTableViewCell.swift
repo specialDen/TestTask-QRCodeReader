@@ -49,8 +49,8 @@ class ItemsTableViewCell: UITableViewCell {
     private func setupRowView(with item: Item){
         let itemLabel:UILabel = {
             let label = UILabel()
-            label.text = "\(item.name) x \(item.count)"
-            label.font = .systemFont(ofSize: 20, weight: .bold)
+            label.text = "\(item.name) x " + String(format: "%.0f", item.count)
+            label.font = .systemFont(ofSize: 18, weight: .bold)
             label.textColor = .black
             label.textAlignment = .left
             label.numberOfLines = 0
@@ -60,7 +60,7 @@ class ItemsTableViewCell: UITableViewCell {
         let priceLabel:UILabel = {
             let label = UILabel()
             label.text = String(format: "%.2f", item.price) + " ₽"
-            label.font = .systemFont(ofSize: 20, weight: .bold)
+            label.font = .systemFont(ofSize: 18, weight: .bold)
             label.textColor = .black
             label.textAlignment = .right
             label.numberOfLines = 0
@@ -74,11 +74,7 @@ class ItemsTableViewCell: UITableViewCell {
         
         mainStackView.addArrangedSubview(itemStackView)
     }
-    
-    
-    //    private lazy var dateTimeStackView: UIStackView = {
-    //        [dateLabel, timeLabel].toStackView(orientation: .horizontal, distribution: .fillEqually , spacing: 0)
-    //    }()
+
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
@@ -97,7 +93,6 @@ class ItemsTableViewCell: UITableViewCell {
     
     private func addSubViews() {
         contentView.addSubview(mainStackView)
-        //        contentView.addSubview(stackView)
         
     }
     private func setConstraints(){
@@ -107,8 +102,8 @@ class ItemsTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
-            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
@@ -127,7 +122,7 @@ class ItemsTableViewCell: UITableViewCell {
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 1.5
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-        shapeLayer.lineDashPattern = [6,3]
+        shapeLayer.lineDashPattern = [9,4]
         shapeLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: shapeRect.height, width: shapeRect.width, height: 0), cornerRadius: 0).cgPath
 
         cell.layer.addSublayer(shapeLayer)
@@ -146,17 +141,5 @@ extension ItemsTableViewCell {
     
 }
 
-public extension Array where Element == UIView {
-    func toStackView(orientation: NSLayoutConstraint.Axis, distribution: UIStackView.Distribution = .fill, spacing: CGFloat) -> UIStackView {
-        let stackView = UIStackView(arrangedSubviews: self)
-        stackView.axis = orientation
-        stackView.distribution = distribution
-        stackView.spacing = spacing
-        return stackView
-    }
-}
-extension UITableViewCell {
-    public static var reuseIdentifier: String {
-        String(describing: self)
-    }
-}
+
+

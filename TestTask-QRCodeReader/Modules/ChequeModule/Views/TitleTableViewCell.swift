@@ -118,8 +118,8 @@ class TitleTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
-            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            mainStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)        ])
         }
     }
@@ -161,7 +161,7 @@ extension TitleTableViewCell {
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 1.5
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-        shapeLayer.lineDashPattern = [6,3]
+        shapeLayer.lineDashPattern = [9,4]
         shapeLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: shapeRect.height, width: shapeRect.width, height: 0), cornerRadius: 0).cgPath
 
         cell.layer.addSublayer(shapeLayer)

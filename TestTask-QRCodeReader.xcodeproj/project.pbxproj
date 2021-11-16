@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B685EC4E274141CF0069AD03 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685EC4D274141CF0069AD03 /* TableViewManager.swift */; };
 		B6AFC8CC27415A9600016487 /* ThirdVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFC8CB27415A9600016487 /* ThirdVCBuilder.swift */; };
+		B6EC1DA22743441A00127E71 /* TableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC1DA12743441A00127E71 /* TableViewCellExtension.swift */; };
+		B6EC1DA42743445D00127E71 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC1DA32743445D00127E71 /* ArrayExtension.swift */; };
+		B6EF957827434BAC0049143F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF957727434BAC0049143F /* Constants.swift */; };
 		B6F42CE92742A72E007BA337 /* ScannerVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F42CE82742A72E007BA337 /* ScannerVCBuilder.swift */; };
 		B6FB6D35273FD6400041955D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D34273FD6400041955D /* AppDelegate.swift */; };
 		B6FB6D37273FD6400041955D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FB6D36273FD6400041955D /* SceneDelegate.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		B685EC4D274141CF0069AD03 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		B6AFC8CB27415A9600016487 /* ThirdVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVCBuilder.swift; sourceTree = "<group>"; };
+		B6EC1DA12743441A00127E71 /* TableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellExtension.swift; sourceTree = "<group>"; };
+		B6EC1DA32743445D00127E71 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		B6EF957727434BAC0049143F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B6F42CE82742A72E007BA337 /* ScannerVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerVCBuilder.swift; sourceTree = "<group>"; };
 		B6FB6D31273FD6400041955D /* TestTask-QRCodeReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestTask-QRCodeReader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FB6D34273FD6400041955D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6EC1DA0274343F900127E71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6EC1DA12743441A00127E71 /* TableViewCellExtension.swift */,
+				B6EC1DA32743445D00127E71 /* ArrayExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B6FB6D28273FD6400041955D = {
 			isa = PBXGroup;
 			children = (
@@ -87,8 +102,8 @@
 				B6FB6D34273FD6400041955D /* AppDelegate.swift */,
 				B6FB6D36273FD6400041955D /* SceneDelegate.swift */,
 				B6FB6D6627409A380041955D /* Base */,
-				B6FB6D62274099820041955D /* Modules */,
 				B6FB6D56274053090041955D /* Coordinator */,
+				B6FB6D62274099820041955D /* Modules */,
 				B6FB6D3D273FD6420041955D /* Assets.xcassets */,
 				B6FB6D3F273FD6420041955D /* LaunchScreen.storyboard */,
 				B6FB6D42273FD6420041955D /* Info.plist */,
@@ -160,6 +175,7 @@
 		B6FB6D6627409A380041955D /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				B6EC1DA0274343F900127E71 /* Extensions */,
 				B6FB6D6827409A5D0041955D /* Managers */,
 				B6FB6D6727409A510041955D /* BaseModels */,
 			);
@@ -170,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				B6FB6D5027403D8E0041955D /* AppModel.swift */,
+				B6EF957727434BAC0049143F /* Constants.swift */,
 			);
 			path = BaseModels;
 			sourceTree = "<group>";
@@ -179,6 +196,7 @@
 			children = (
 				B6FB6D5227403F770041955D /* JsonDecoder.swift */,
 				B6FB6D602740951C0041955D /* QRScannableManager.swift */,
+				B685EC4D274141CF0069AD03 /* TableViewManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -208,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				B6FB6D712740CDAC0041955D /* ThirdVCViewModel.swift */,
-				B685EC4D274141CF0069AD03 /* TableViewManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,9 +319,12 @@
 				B6FB6D49273FD7AB0041955D /* Coordinator.swift in Sources */,
 				B6FB6D39273FD6400041955D /* StartScreenViewController.swift in Sources */,
 				B6FB6D35273FD6400041955D /* AppDelegate.swift in Sources */,
+				B6EF957827434BAC0049143F /* Constants.swift in Sources */,
 				B6FB6D702740C0AD0041955D /* TotalTableViewCell.swift in Sources */,
 				B6FB6D722740CDAC0041955D /* ThirdVCViewModel.swift in Sources */,
 				B6FB6D4B273FDA840041955D /* MainCoordinator.swift in Sources */,
+				B6EC1DA22743441A00127E71 /* TableViewCellExtension.swift in Sources */,
+				B6EC1DA42743445D00127E71 /* ArrayExtension.swift in Sources */,
 				B6FB6D37273FD6400041955D /* SceneDelegate.swift in Sources */,
 				B6F42CE92742A72E007BA337 /* ScannerVCBuilder.swift in Sources */,
 				B6FB6D5127403D8E0041955D /* AppModel.swift in Sources */,

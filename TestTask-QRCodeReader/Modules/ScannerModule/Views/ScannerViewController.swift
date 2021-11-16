@@ -14,11 +14,12 @@ protocol ScannerViewInput: AnyObject {
 
 class ScannerViewController: UIViewController  {
     var undecodedData: String?
-    
+    var subView: UIView?
     var decodedData: AppModel?
-    var viewModel: (QRScannableDelegate & ScannerVCViewModelProtocol)?
-//    = ScannerVCViewModel()
-
+    var viewModel: (QRScannableDelegate & ScannerVCViewModelProtocol & Coordinating)?
+    //    = ScannerVCViewModel()
+    var leftImageView: UIImageView = UIImageView()
+    var rightImageView: UIImageView = UIImageView()
     private lazy var captureSession = AVCaptureSession()
     private lazy var videoPreviewLayer: AVCaptureVideoPreviewLayer = {
         AVCaptureVideoPreviewLayer(session: captureSession)
@@ -40,81 +41,125 @@ class ScannerViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         setupUI()
         captureSession.startRunning()
-//        startRunning2()
+        //        startRunning2()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        leftBarButtonItem.action = #selector(didTapBackButton)
-
+        //        leftBarButtonItem.action = #selector(didTapBackButton)
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
         viewModel?.viewDidChangeLifecycle(viewIsActive: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.backgroundColor = .none
+//        navigationController?.navigationBar.backgroundColor = .none
         viewModel?.viewDidChangeLifecycle(viewIsActive: true)
     }
     
     private func setupUI() {
-       
+        navigationController?.navigationBar.isHidden = true
         addSubViews()
-//        ff()
+        setConstraints()
+        
         configuerLayout()
         configureVideoLayer(with: captureDevice)
-        configureNavBar()
-        
-    }
-    func configureNavBar(){
-//        "nav-bar-back-button"
-        navigationItem.title = ""
-        navigationItem.leftBarButtonItems = [leftBarButtonItem]
-        
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-    }
     
-    let rightBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(image: UIImage(named: "nav-bar-back-button"), style: .plain, target: self, action: #selector(didTapFlash))
-   
-    }()
-    
-    lazy var leftBarButtonItem: UIBarButtonItem = {
-       let button = UIBarButtonItem()
-        button.title = "tfff"
-        let image = UIImage(named: "nav-bar-back-button")
-//        let imageView = UIImageView(image: image)
-//        button.customView = imageView
-        button.setBackgroundImage(image, for: .normal, barMetrics: .default)
-//        imageView.frame =
-//        image?.size = button.customView?.bounds.size ?? .equalTo(self)
-//        button.target =
-        button.action = #selector(didTapBackButton)
+    }
 
-        
-        return button
-    }()
     
     @objc private func didTapFlash(){
         flashActive(on: captureDevice)
     }
     @objc private func didTapBackButton(){
-        flashActive(on: captureDevice)
-    }
+        viewModel?.coordinator?.eventOccured(with: .dismiss)
+            }
     
     private func addSubViews() {
-//        view.layer.addSublayer(videoPreviewLayer)
-//        view.layer.addSublayer(ff())
-//        view.addSubview(qrCodeFrameView)
-//        view.bringSubviewToFront(qrCodeFrameView)
+        view.layer.addSublayer(videoPreviewLayer)
+        guard let subView = ff() else{
+            return
+        }
+        leftImageView = UIImageView(image: UIImage(named: Constants.leftNavBarImageName))
+        rightImageView = UIImageView(image: UIImage(named: Constants.rightNavBarImageName))
+        leftBarButton.addSubview(leftImageView)
+        rightBarButton.addSubview(rightImageView)
+        subView.addSubview(leftBarButton)
+        subView.addSubview(rightBarButton)
+        subView.addSubview(displayLabel)
+        view.addSubview(subView)
+        
+        view.addSubview(qrCodeFrameView)
+        view.bringSubviewToFront(qrCodeFrameView)
     }
     
     private func configuerLayout() {
         videoPreviewLayer.frame = view.bounds
     }
+    
+    let leftBarButton:UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        button.tintColor = .white
+        return button
+    }()
+    
+    let rightBarButton:UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.addTarget(self, action: #selector(didTapFlash), for: .touchUpInside)
+        button.tintColor = .white
+        return button
+    }()
+    
+    let displayLabel:UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.textColor = .white
+        label.text = Constants.ScannerVCLabelText
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    
+    private func setConstraints() {
+        let center = navigationController?.navigationBar.center
+        leftBarButton.translatesAutoresizingMaskIntoConstraints = false
+        rightBarButton.translatesAutoresizingMaskIntoConstraints = false
+        displayLabel.translatesAutoresizingMaskIntoConstraints = false
+        displayLabel.sizeToFit()
+        
+        NSLayoutConstraint.activate([
+
+            leftBarButton.leftAnchor.constraint(equalTo: subView?.leftAnchor ?? view.leftAnchor, constant: 15),
+            leftBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
+
+            
+            rightBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
+            rightBarButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+
+            
+            displayLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90) + 120),
+            displayLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
+        ])
+        
+        leftImageView.frame = leftBarButton.bounds
+        rightImageView.frame = rightBarButton.bounds
+        
+    }
+    
+    
+    
+    
+    
     
     private func configureVideoLayer(with device: AVCaptureDevice?) {
         guard let captureDevice = device else {
@@ -134,39 +179,50 @@ class ScannerViewController: UIViewController  {
     
     func flashActive(on device: AVCaptureDevice?) {
         guard let device = device, device.hasTorch else { return  }
-            do {
-                try device.lockForConfiguration()
-                let torchOn = !device.isTorchActive
-                try device.setTorchModeOn(level:1.0)
-                device.torchMode = torchOn ? .on : .off
-                device.unlockForConfiguration()
-            } catch {
-                print("error")
-            }
+        do {
+            try device.lockForConfiguration()
+            let torchOn = !device.isTorchActive
+            try device.setTorchModeOn(level:1.0)
+            device.torchMode = torchOn ? .on : .off
+            device.unlockForConfiguration()
+        } catch {
+            print("error")
+        }
         
     }
-//    deinit {
-//        print("gtgtgtgrcrtvyjbukojyhtgr")
-//    }
-////    private func startRunning2() {
-//
-//    }
-    
-    
-//    let radius: CGFloat = myRect.size.width
-    func ff() -> CALayer{
-    let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), cornerRadius: 0)
-        let innerRectPath = UIBezierPath(roundedRect: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 200, height: 200), cornerRadius: 12)
-    path.append(innerRectPath)
-    path.usesEvenOddFillRule = true
 
-    let fillLayer = CAShapeLayer()
-    fillLayer.path = path.cgPath
-    fillLayer.fillRule = .evenOdd
-        fillLayer.fillColor = UIColor.gray.cgColor
-//view.backgroundColor?.cgColor
-    fillLayer.opacity = 0.5
-    return fillLayer
+    func ff() -> UIView? {
+        
+        // Create a view filling the screen.
+        let overlay = UIView(frame: CGRect(x: 0, y: 0,
+                                           width: UIScreen.main.bounds.width,
+                                           height: UIScreen.main.bounds.height))
+        
+        // Set a semi-transparent, black background.
+        overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
+        
+        // Create the initial layer from the view bounds.
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = overlay.bounds
+        maskLayer.fillColor = UIColor.black.cgColor
+        
+        // Create the frame for the inner rectangle.
+        let innerRectPath = UIBezierPath(roundedRect: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 200, height: 200), cornerRadius: 12)
+
+        
+        // Create the path.CAShapeLayerFillRule.evenOdd
+        let path = UIBezierPath(rect: overlay.bounds)
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+        
+        // Append the circle tcgPathpath so that it is subtracted.
+        path.append(innerRectPath)
+        maskLayer.path = path.cgPath
+        
+        // Set the mask of the view.
+        overlay.layer.mask = maskLayer
+        
+        return overlay
+
     }
     
     
