@@ -17,8 +17,6 @@ class ScannerViewController: UIViewController  {
     var subView: UIView?
     var decodedData: AppModel?
     var viewModel: (QRScannableDelegate & ScannerVCViewModelProtocol & Coordinating)?
-    var leftImageView: UIImageView = UIImageView()
-    var rightImageView: UIImageView = UIImageView()
     private lazy var captureSession = AVCaptureSession()
     private lazy var videoPreviewLayer: AVCaptureVideoPreviewLayer = {
         AVCaptureVideoPreviewLayer(session: captureSession)
@@ -83,10 +81,7 @@ class ScannerViewController: UIViewController  {
         guard let subView = createMaskingView() else{
             return
         }
-        leftImageView = UIImageView(image: UIImage(named: Constants.leftNavBarImageName))
-        rightImageView = UIImageView(image: UIImage(named: Constants.rightNavBarImageName))
-        leftBarButton.addSubview(leftImageView)
-        rightBarButton.addSubview(rightImageView)
+
         subView.addSubview(leftBarButton)
         subView.addSubview(rightBarButton)
         subView.addSubview(displayLabel)
@@ -103,6 +98,7 @@ class ScannerViewController: UIViewController  {
     let leftBarButton:UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        button.setImage(UIImage(named: Constants.leftNavBarImageName), for: .normal)
         button.tintColor = .white
         return button
     }()
@@ -111,6 +107,7 @@ class ScannerViewController: UIViewController  {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         button.addTarget(self, action: #selector(didTapFlash), for: .touchUpInside)
         button.tintColor = .white
+        button.setImage(UIImage(named: Constants.rightNavBarImageName), for: .normal)
         return button
     }()
     
@@ -131,26 +128,36 @@ class ScannerViewController: UIViewController  {
         leftBarButton.translatesAutoresizingMaskIntoConstraints = false
         rightBarButton.translatesAutoresizingMaskIntoConstraints = false
         displayLabel.translatesAutoresizingMaskIntoConstraints = false
+        rightBarButton.imageView?.translatesAutoresizingMaskIntoConstraints = false
+        leftBarButton.imageView?.translatesAutoresizingMaskIntoConstraints = false
         displayLabel.sizeToFit()
         
         NSLayoutConstraint.activate([
 
             leftBarButton.leftAnchor.constraint(equalTo: subView?.leftAnchor ?? view.leftAnchor, constant: 15),
             leftBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
+            leftBarButton.heightAnchor.constraint(equalToConstant: 50),
+            leftBarButton.widthAnchor.constraint(equalToConstant: 50),
+            leftBarButton.imageView!.widthAnchor.constraint(equalToConstant: 40),
+            leftBarButton.imageView!.heightAnchor.constraint(equalToConstant: 40),
 
             
             rightBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
             rightBarButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            rightBarButton.heightAnchor.constraint(equalToConstant: 50),
+            rightBarButton.widthAnchor.constraint(equalToConstant: 50),
+            rightBarButton.imageView!.widthAnchor.constraint(equalToConstant: 40),
+            rightBarButton.imageView!.heightAnchor.constraint(equalToConstant: 40),
+            
 
             
             displayLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90) + 120),
             displayLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
+            
+            
         ])
-        
-        leftImageView.frame = leftBarButton.bounds
-        rightImageView.frame = rightBarButton.bounds
-        
+        rightBarButton.imageView?.frame = rightBarButton.bounds
     }
     
     
