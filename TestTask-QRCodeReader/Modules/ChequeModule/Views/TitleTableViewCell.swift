@@ -8,15 +8,9 @@
 import UIKit
 
 class TitleTableViewCell: UITableViewCell {
-    
-    
-    
-    var datay:AppModel?
-    
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //        setupUI(with: datay)
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +22,7 @@ class TitleTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
     override func layoutSubviews() {
         addDashedBottomBorder(to: self)
     }

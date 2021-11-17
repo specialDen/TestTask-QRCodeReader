@@ -8,11 +8,6 @@
 import UIKit
 
 class ItemsTableViewCell: UITableViewCell {
-    var undecodedData: String?
-    
-    var decodedData: AppModel?
-    
-    
     
     var companyLabelText: String = ""
     var addressLabelText:String = ""

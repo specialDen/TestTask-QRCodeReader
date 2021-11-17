@@ -41,7 +41,6 @@ class ScannerViewController: UIViewController  {
         overrideUserInterfaceStyle = .light
         setupUI()
         captureSession.startRunning()
-        //        startRunning2()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -138,32 +137,25 @@ class ScannerViewController: UIViewController  {
             leftBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
             leftBarButton.heightAnchor.constraint(equalToConstant: 50),
             leftBarButton.widthAnchor.constraint(equalToConstant: 50),
-            leftBarButton.imageView!.widthAnchor.constraint(equalToConstant: 40),
-            leftBarButton.imageView!.heightAnchor.constraint(equalToConstant: 40),
+            leftBarButton.imageView!.widthAnchor.constraint(equalToConstant: 25),
+            leftBarButton.imageView!.heightAnchor.constraint(equalToConstant: 25),
 
             
             rightBarButton.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90)),
             rightBarButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
             rightBarButton.heightAnchor.constraint(equalToConstant: 50),
             rightBarButton.widthAnchor.constraint(equalToConstant: 50),
-            rightBarButton.imageView!.widthAnchor.constraint(equalToConstant: 40),
-            rightBarButton.imageView!.heightAnchor.constraint(equalToConstant: 40),
+            rightBarButton.imageView!.widthAnchor.constraint(equalToConstant: 25),
+            rightBarButton.imageView!.heightAnchor.constraint(equalToConstant: 25),
             
 
             
             displayLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (center?.y ?? 90) + 120),
             displayLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
-            
-            
+
         ])
-        rightBarButton.imageView?.frame = rightBarButton.bounds
     }
-    
-    
-    
-    
-    
+
     
     private func configureVideoLayer(with device: AVCaptureDevice?) {
         guard let captureDevice = device else {
@@ -190,7 +182,7 @@ class ScannerViewController: UIViewController  {
             device.torchMode = torchOn ? .on : .off
             device.unlockForConfiguration()
         } catch {
-            print("error")
+            print(error)
         }
         
     }
@@ -201,18 +193,13 @@ class ScannerViewController: UIViewController  {
                                            width: UIScreen.main.bounds.width,
                                            height: UIScreen.main.bounds.height))
         
-        // Set a semi-transparent, black background.
         overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
         
-        // Create the initial layer from the view bounds.
         let maskLayer = CAShapeLayer()
         maskLayer.frame = overlay.bounds
         maskLayer.fillColor = UIColor.black.cgColor
         
-        // Create the frame for the inner rectangle.
         let innerRectPath = UIBezierPath(roundedRect: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 200, height: 200), cornerRadius: 12)
-
-        
         let path = UIBezierPath(rect: overlay.bounds)
         maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         
@@ -237,6 +224,4 @@ extension ScannerViewController: ScannerViewInput {
             qrCodeFrameView.frame = .zero
         }
     }
-    
-    
 }

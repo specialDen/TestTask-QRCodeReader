@@ -8,15 +8,9 @@
 import UIKit
 
 class TotalTableViewCell: UITableViewCell {
-    
-    var decodedData: AppModel?
-    
-    
-    var total: String?
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupUI(with: total)
     }
     
     required init?(coder: NSCoder) {
@@ -46,19 +40,13 @@ class TotalTableViewCell: UITableViewCell {
             return label
         }()
         
-        //
-        //        let itemStackView: UIStackView = {
-        //            [descriptionLabel, totalPriceLabel.toStackView(orientation: .horizontal, distribution: .fill , spacing: 0)
-        //        }()
         
         mainStackView.addArrangedSubview(descriptionLabel)
         mainStackView.addArrangedSubview(totalPriceLabel)
     }
     
     
-    //    private lazy var dateTimeStackView: UIStackView = {
-    //        [dateLabel, timeLabel].toStackView(orientation: .horizontal, distribution: .fillEqually , spacing: 0)
-    //    }()
+
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
@@ -77,7 +65,6 @@ class TotalTableViewCell: UITableViewCell {
     
     private func addSubViews() {
         contentView.addSubview(mainStackView)
-        //        contentView.addSubview(stackView)
         
     }
     private func setConstraints(){
